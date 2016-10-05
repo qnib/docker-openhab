@@ -1,13 +1,13 @@
 #!/usr/local/bin/dumb-init /bin/sh
 
-cd `dirname $0`
+cd ${OPENHAB_HOME}
 
 # set path to eclipse folder. If local folder, use '.'; otherwise, use /path/to/eclipse/
 eclipsehome="server";
 
 # set ports for HTTP(S) server
-HTTP_PORT=8080
-HTTPS_PORT=8443
+export HTTP_PORT=${OPENHAB_HTTP_PORT:-8080}
+export HTTPS_PORT=${OPENHAB_HTTPS_PORT:-8443}
 
 # get path to equinox jar inside $eclipsehome folder
 cp=$(find $eclipsehome -name "org.eclipse.equinox.launcher_*.jar" | sort | tail -1);
